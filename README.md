@@ -19,7 +19,7 @@ Summary of Tableau analysis:
 ● The analysis identifies the top 5 pollutants as the primary contributors to asthma-related fatalities in California pm2.5 seems to be the top pollutant for deaths.Pm2.5 emerges as a major pollutant affecting lungs, despite higher overall O3 values in certain counties.
 ![Image](./scatter.png)
 ●	Los Angeles emerges as the leading county for Asthma Emergency Department (ED) visits, followed by Riverside, Orange, Alameda, Fresno, etc.
-![Image](./hosiptalizations.png)
+![Image](./hospitalizations.png)
 ●	O3 and Co pollutants are identified as the key contributors to the rise in temperature levels.A notable trend is observed with increased pollutant levels during the first week of every month.
 ![Image](./dashboard_temp.png)
 
