@@ -1,0 +1,299 @@
+{
+	"jobConfig": {
+		"name": "push data to sqlserver ",
+		"description": "",
+		"role": "arn:aws:iam::475950399562:role/aws-glue-openaq",
+		"command": "glueetl",
+		"version": "4.0",
+		"runtime": null,
+		"workerType": "G.1X",
+		"numberOfWorkers": 10,
+		"maxCapacity": 10,
+		"maxRetries": 0,
+		"timeout": 2880,
+		"maxConcurrentRuns": 1,
+		"security": "none",
+		"scriptName": "push data to sqlserver .py",
+		"scriptLocation": "s3://aws-glue-assets-475950399562-us-east-1/scripts/",
+		"language": "python-3",
+		"spark": true,
+		"sparkConfiguration": "standard",
+		"jobParameters": [],
+		"tags": [],
+		"jobMode": "VISUAL_MODE",
+		"createdOn": "2023-12-08T23:26:41.390Z",
+		"developerMode": false,
+		"connectionsList": [],
+		"temporaryDirectory": "s3://aws-glue-assets-475950399562-us-east-1/temporary/",
+		"logging": true,
+		"glueHiveMetastore": true,
+		"etlAutoTuning": false,
+		"metrics": true,
+		"observabilityMetrics": true,
+		"bookmark": "job-bookmark-disable",
+		"sparkPath": "s3://aws-glue-assets-475950399562-us-east-1/sparkHistoryLogs/",
+		"flexExecution": false,
+		"minFlexWorkers": null
+	},
+	"dag": {
+		"node-1702077396116": {
+			"nodeId": "node-1702077396116",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [],
+			"name": "AWS Glue Data Catalog",
+			"generatedNodeName": "AWSGlueDataCatalog_node1702077396116",
+			"classification": "DataSource",
+			"type": "Catalog",
+			"isCatalog": true,
+			"database": "airqdatabase",
+			"table": "aws-glue-healthcare-county-transformed-table",
+			"calculatedType": "",
+			"runtimeParameters": [],
+			"codeGenVersion": 2
+		},
+		"node-1702077878661": {
+			"nodeId": "node-1702077878661",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1702077416194"
+			],
+			"name": "Microsoft SQL Server",
+			"generatedNodeName": "MicrosoftSQLServer_node1702077878661",
+			"classification": "DataSink",
+			"type": "SQLServer",
+			"streamingBatchInterval": 100,
+			"database": "airqdatabase",
+			"table": "aws-glue-openaqtable",
+			"format": null,
+			"partitionKeys": [],
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1702077412601": {
+			"nodeId": "node-1702077412601",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [],
+			"name": "AWS Glue Data Catalog",
+			"generatedNodeName": "AWSGlueDataCatalog_node1702077412601",
+			"classification": "DataSource",
+			"type": "Catalog",
+			"isCatalog": true,
+			"database": "airqdatabase",
+			"table": "aws-glue-openaqtable",
+			"calculatedType": "",
+			"runtimeParameters": [],
+			"codeGenVersion": 2
+		},
+		"node-1702077741261": {
+			"nodeId": "node-1702077741261",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1702077396116"
+			],
+			"name": "Renamed keys for Join",
+			"generatedNodeName": "RenamedkeysforJoin_node1702077741261",
+			"classification": "Transform",
+			"type": "ApplyMapping",
+			"mapping": [
+				{
+					"toKey": "right_county",
+					"fromPath": [
+						"county"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "right_year",
+					"fromPath": [
+						"year"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "right_month",
+					"fromPath": [
+						"month"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "right_day",
+					"fromPath": [
+						"day"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "right_date",
+					"fromPath": [
+						"date"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "right_asthma measure",
+					"fromPath": [
+						"asthma measure"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "right_comparison",
+					"fromPath": [
+						"comparison"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "right_group",
+					"fromPath": [
+						"group"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "right_county count",
+					"fromPath": [
+						"county count"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "right_county rate",
+					"fromPath": [
+						"county rate"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "right_california count",
+					"fromPath": [
+						"california count"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "right_california rate",
+					"fromPath": [
+						"california rate"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "right_death_count_location",
+					"fromPath": [
+						"death_count_location"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				}
+			],
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1702077416194": {
+			"nodeId": "node-1702077416194",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1702077412601",
+				"node-1702077741261"
+			],
+			"name": "Join",
+			"generatedNodeName": "Join_node1702077416194",
+			"classification": "Transform",
+			"type": "Join",
+			"joinType": "outer",
+			"columns": [
+				{
+					"from": "node-1702077412601",
+					"keys": [
+						"country"
+					]
+				},
+				{
+					"from": "node-1702077741261",
+					"keys": [
+						"right_county"
+					]
+				}
+			],
+			"columnConditions": [
+				"="
+			],
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-1702077699226": {
+			"nodeId": "node-1702077699226",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1702077416194"
+			],
+			"name": "Amazon S3",
+			"generatedNodeName": "AmazonS3_node1702077699226",
+			"classification": "DataSink",
+			"type": "S3",
+			"streamingBatchInterval": 100,
+			"format": "csv",
+			"compression": "none",
+			"path": "s3://aws-glue-openaq-county-transformed",
+			"partitionKeys": [],
+			"schemaChangePolicy": {
+				"enableUpdateCatalog": true,
+				"updateBehavior": "UPDATE_IN_DATABASE",
+				"database": "airqdatabase",
+				"table": "table for ssms"
+			},
+			"updateCatalogOptions": "schemaAndPartitions",
+			"calculatedType": "",
+			"codeGenVersion": 2
+		}
+	},
+	"hasBeenSaved": false
+}
